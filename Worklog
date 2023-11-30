@@ -1,0 +1,86 @@
+
+Animus Discord Bot V1 Worklog
+
+----------------------------------------------------------------------------------------------------------------------------------------
+10/16/2023
+    - Created a folder and started on the bot
+    - Got the basic skeleton down and it can run
+
+----------------------------------------------------------------------------------------------------------------------------------------
+10/12/2023
+    - I have no clue what the purpose of this bot is, I will keep programming random stuff into it till I'm satisfied
+    - Decided to try data-training the bot
+    - I will try to make a quick bot command that outputs random quotes from a text file
+    - Found a website called https://www.kaggle.com/ wich has user-uploaded datafile which can be used to train chatbots
+
+----------------------------------------------------------------------------------------------------------------------------------------
+10/18/2023
+    - After spending a long time finding a quotes datafile on kaggle and trying to format it (even AI was struggling), I realized 
+        that there was an easier way.There is a website called "https://api.quotable.io/random". When you search for this website, it will give you a random quote. 
+        I will make the bot use this website instead of the datafile since it will be far easier to implement than trying to format a large text 
+        file with over 60,000 quotes.
+    - Finished making the quotes command, and its pretty nice. The implementation was pretty easy (had to use Google Bard for help). But
+        it wasn't too bad for the first attempt. For the future I don't think I need the AI's help unless it's for resources gathering or making a nlp chatbot.
+
+    - After much searching, I found and index of public api's to use for commands. https://github.com/public-apis/public-apis
+        I will use this first for the weather command. The user will get details and weather for the inputted location.
+
+    - I used the same concept as above and got the coordinates of the user's input location for the command. It took 6 hours. Help.
+        - I used this website: https://geocoding.geo.census.gov/geocoder/locations/address?street=&city=&state=&zip=benchmark=Public_AR_Census2020&format=json 
+        - I plugged in the user's address input after the "=" sign. Only the street address and zip code where required.
+        - Firstly, I had to make sure there was proper input validation 
+        - Then I had to splice the user input so that the url would accept it.
+        - Got data from the website, (json file) and how to figure out how to get the coordinates from the data (took 5 hours)
+        - For today I got the coordinates, and since I know how to parse through the "json dictionary of hell", I should be able to 
+            plug in the coordinates to the other public api link, parse through the stuff and collect needed data and make a nice looking output in no time (hopefully)
+        - The "other public api" that I mentioned above is this: https://api.weather.gov/points/39.264,-76.8609. It gives me 
+            detailed information about the area, dew, humidity, wind speed, etc. 
+        - I think tomorrow's goal will be to include and format all the information into a nice output.
+        
+----------------------------------------------------------------------------------------------------------------------------------------
+10/20/2023
+    - Today I will take the coordinates and send them to the weather api for information. I have yet to decide how the output will look like
+        but thats smth I will do when I actually get to that part.
+    - For some reason the api weather url takes the latitude and longitude (y,x) in that order, instead of taking (x,y)
+    - Once I get into the JSON file for the weather api, I need to grab another link from it, and then request that link for the 
+        area's weather.
+    - I finished, it was pretty easy. Formatting the output was easy as well, I decided to go for a simplistic approach. It was just the 
+        address and the coordinates, and under was a short description about the current weather.
+    - I was working on Japanese HW and was refering to a website for help. I was curious to see if I could grab data from its HTML and print
+        it in discord so that I don't have to open the website every single time. 
+    - Downloaded BeautifulSoup for web-scraping the information, but whenever I try to get parse to a certain area on the page, it just
+        shows me that theres nothing there, when there clearly is. This is pissing me off and its late, so Im going to bed.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+10/21/2023
+    - After many errors, I got rid of BeautifulSoup and installed Selenium instead. It is much more powerful.
+    - I set the link, program it to click on the buttons on the website so that I can access the answers, and then take a screenshot and 
+        send it the user on discord.
+    - HAHAHHAHAHHA it works perfectly, I have no clue why I wanted to do this, but I'm glad I did it. Now I know how to access and get
+        screenshots from any site.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+11/2/2023
+    - Its been a bit, but I've come back to add descriptions to the commands.
+    - I forgot how to run the bot for a good hour and figured out that all I needed to do was type "py main.py",
+        I kept doing "python main.py" and that doesn't work for some reason.
+    - I successfully added a command description, but im struggling to add a argument description, since "*arg" isn't something
+        you can add a description to.
+    - I just realized that this was supposed to be a chatbot and that it doesn't respond to me normally anymore.
+    - I will have to reformat the commands, so that I can just ask it normally:
+        Instead of ">>weather (Street,Zip)", i'll just say, "Whats the weather in (address,zip)"
+    - NVM that is complicated for no reason (I have no clue what I'm doing)
+    - What information I made it a whole lot easier for myself and just let the bot google whatever the user wants.
+        If you ask for the weather, it'll send a screenshot of the weather (from google). I dunno, we'll see.
+    
+----------------------------------------------------------------------------------------------------------------------------------------
+
+I think I'm going to call it quits here for this version of the bot. I plan to make another version, one where you can ask questions.
+    So rather than using commands, it'll be built into the chatbot.
+        "Whats the weather.. (location)?
+        "I gotchya, here ya go: Sends you the details/screenshot"
+
+END OF VERSION 1.
+        
+
+
